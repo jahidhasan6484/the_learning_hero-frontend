@@ -7,6 +7,7 @@ import FacebookLogin from "../auth/FacebookLogin";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
+  useSignOut,
 } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
@@ -22,12 +23,13 @@ const Register = () => {
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [signOut] = useSignOut(auth);
 
   useEffect(() => {
-    if (userFromAuth) {
+    if (userFromAuth && !customLoading) {
       navigate("/", { replace: true });
     }
-  }, [userFromAuth, navigate]);
+  }, [userFromAuth, navigate, customLoading]);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -50,16 +52,19 @@ const Register = () => {
     };
 
     try {
-      await createUserWithEmailAndPassword(email, password);
-      const response = await axios.post(
-        `${import.meta.env.VITE_server}/user/register`,
-        data
-      );
+      const userData = await createUserWithEmailAndPassword(email, password);
+      if (userData) {
+        const response = await axios.post(
+          `${import.meta.env.VITE_server}/user/register`,
+          data
+        );
 
-      const { token, message } = response.data;
-      localStorage.setItem("token", token);
-      toast.success(message);
+        const { token, message } = response.data;
+        localStorage.setItem("token", token);
+        toast.success(message);
+      }
     } catch (error) {
+      await signOut();
       setCustomError(error.message);
     } finally {
       setCustomLoading(false);
@@ -128,7 +133,7 @@ const Register = () => {
               className="btn btn-primary"
               disabled={loading || customLoading}
             >
-              {loading || customLoading ? "You are registering" : "Register"}
+              {loading || customLoading ? "Registering..." : "Register"}
             </button>
           </div>
 

@@ -1,6 +1,36 @@
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.config";
+import toast from "react-hot-toast";
+import LoadingPage from "./LoadingPage";
 
 const Navbar = () => {
+  const [userFromAuth, loadingFromAuth, errorFromAuth] = useAuthState(auth);
+  const [signOut, loading, error] = useSignOut(auth);
+
+  // Handle loading state
+  if (loadingFromAuth || loading) {
+    return <LoadingPage />;
+  }
+
+  // Handle errors
+  if (errorFromAuth || error) {
+    toast.error(errorFromAuth?.message || error?.message);
+    return null;
+  }
+
+  // Handle logout
+  const handleLogOut = async () => {
+    try {
+      await signOut();
+
+      toast.success("You have logged out successfully");
+      localStorage.removeItem("token");
+    } catch {
+      toast.error("Failed to log out");
+    }
+  };
+
   return (
     <div className="bg-white fixed top-0 left-0 right-0 z-50">
       <div className="navbar container mx-auto">
@@ -73,7 +103,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login">Login</Link>
+          {userFromAuth ? (
+            <button onClick={handleLogOut}>Log out</button>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </div>{" "}
       </div>
     </div>
