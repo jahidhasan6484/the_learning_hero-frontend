@@ -72,9 +72,12 @@ const Navbar = () => {
             <li>
               <Link to="/latest-courses">Latest Courses</Link>
             </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+
+            {userFromAuth && (
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
