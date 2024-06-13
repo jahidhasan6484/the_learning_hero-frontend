@@ -130,7 +130,7 @@ const Register = () => {
 
           <div className="form-control">
             <button
-              className="btn btn-primary"
+              className="btn btn-neutral"
               disabled={loading || customLoading}
             >
               {loading || customLoading ? "Registering..." : "Register"}

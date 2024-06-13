@@ -104,9 +104,19 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {userFromAuth ? (
-            <button onClick={handleLogOut}>Log out</button>
+            <button
+              className="btn btn-error btn-sm text-sm text-white"
+              onClick={handleLogOut}
+            >
+              Log out
+            </button>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link
+              to="/login"
+              className="btn btn-neutral btn-sm text-sm text-white"
+            >
+              Login
+            </Link>
           )}
         </div>{" "}
       </div>
