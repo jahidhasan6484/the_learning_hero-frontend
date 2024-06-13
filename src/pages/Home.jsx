@@ -1,9 +1,11 @@
 import Hero from "../components/Hero";
+import Courses from "./Courses";
 
 const Home = () => {
   return (
     <>
       <Hero />
+      <Courses />
     </>
   );
 };

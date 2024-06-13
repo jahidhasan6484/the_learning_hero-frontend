@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
 import LoadingPage from "./LoadingPage";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [userFromAuth, loadingFromAuth, errorFromAuth] = useAuthState(auth);
@@ -32,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white fixed top-0 left-0 right-0 z-50">
+    <div className="bg-white sticky top-0 left-0 right-0 z-50">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -57,45 +58,19 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
+                <Link to="/latest-courses">Latest Courses</Link>
               </li>
               <li>
                 <a>Item 3</a>
               </li>
             </ul>
           </div>
-          <Link className="text-md md:text-xl font-bold">
-            The Learning Hero
-          </Link>
+          <Logo />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
+              <Link to="/latest-courses">Latest Courses</Link>
             </li>
             <li>
               <a>Item 3</a>

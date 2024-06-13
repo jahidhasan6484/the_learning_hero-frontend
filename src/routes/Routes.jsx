@@ -4,6 +4,7 @@ import ErrorPage from "../pages/shared/ErrorPage";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Courses from "../pages/Courses";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "latest-courses",
+        element: <Courses />,
       },
     ],
   },
