@@ -31,7 +31,6 @@ const DashboardLayout = () => {
         <label htmlFor="my-drawer-2" className="p-4 drawer-button lg:hidden">
           <HiOutlineMenuAlt2 />
         </label>
-
         <Outlet />
       </div>
       <div className="drawer-side">
@@ -46,13 +45,16 @@ const DashboardLayout = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="statistics">Statistics</Link>
-            </li>
-            <li>
               <Link to="courses">My Courses</Link>
             </li>
             <li>
               <Link to="add-course">Add Courses</Link>
+            </li>
+            <li>
+              <Link to="my-classroom">My Classroom</Link>
+            </li>
+            <li>
+              <Link to="payment-history">Payment History</Link>
             </li>
           </div>
 

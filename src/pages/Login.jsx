@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../auth/GoogleLogin";
-import FacebookLogin from "../auth/FacebookLogin";
+// import FacebookLogin from "../auth/FacebookLogin";
 // React Firebase Hooks
 import {
   useAuthState,
@@ -53,7 +53,7 @@ const Login = () => {
       const useData = await signInWithEmailAndPassword(email, password);
       if (useData) {
         const response = await axios.post(
-          `${import.meta.env.VITE_server}/user/login`,
+          `${import.meta.env.VITE_server}/api/user/login`,
           data
         );
 
@@ -129,7 +129,7 @@ const Login = () => {
 
           <div className="mt-2 form-control flex flex-row justify-center gap-x-4">
             <GoogleLogin />
-            <FacebookLogin />
+            {/* <FacebookLogin /> */}
           </div>
 
           <label className="label flex justify-center">

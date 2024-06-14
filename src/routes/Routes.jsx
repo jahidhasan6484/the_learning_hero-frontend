@@ -7,10 +7,17 @@ import Register from "../pages/Register";
 import Courses from "../pages/Courses";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyCourses from "../pages/dashboard/MyCourses";
-import Statistics from "../pages/dashboard/Statistics";
 import AddCourse from "../layouts/AddCourse";
 import UpdateCourse from "../pages/dashboard/UpdateCourse";
 import CourseDetails from "../pages/CourseDetails";
+import MyClassroom from "../pages/dashboard/MyClassroom";
+import PaymentHistory from "../pages/dashboard/PaymentHistory";
+import StartLearning from "../pages/dashboard/StartLearning";
+import PrivateRoute from "./PrivateRoute";
+import Success from "../pages/payment/Success";
+import Cancel from "../pages/payment/Cancel";
+import Failed from "../pages/payment/Failed";
+import { ConfirmPayment } from "../pages/ConfirmPayment";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +45,47 @@ const router = createBrowserRouter([
         path: "details/:id",
         element: <CourseDetails />,
       },
+      {
+        path: "payment/success",
+        element: (
+          <PrivateRoute>
+            <Success />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/failed",
+        element: (
+          <PrivateRoute>
+            <Failed />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/canceled",
+        element: (
+          <PrivateRoute>
+            <Cancel />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "confirm-payment",
+        element: (
+          <PrivateRoute>
+            <ConfirmPayment />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
@@ -58,12 +101,20 @@ const router = createBrowserRouter([
         element: <AddCourse />,
       },
       {
-        path: "statistics",
-        element: <Statistics />,
-      },
-      {
         path: "courses/update/:id",
         element: <UpdateCourse />,
+      },
+      {
+        path: "my-classroom",
+        element: <MyClassroom />,
+      },
+      {
+        path: "my-classroom/start-learning/:id",
+        element: <StartLearning />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },

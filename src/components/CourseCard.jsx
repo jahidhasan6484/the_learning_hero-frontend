@@ -41,7 +41,9 @@ const CourseCard = ({ course, index, dashboard, onDelete }) => {
       const token = localStorage.getItem("token");
 
       const response = await axios.delete(
-        `${import.meta.env.VITE_server}/course/delete?courseId=${course._id}`,
+        `${import.meta.env.VITE_server}/api/course/delete?courseId=${
+          course._id
+        }`,
         {
           headers: {
             "Content-Type": "application/json",

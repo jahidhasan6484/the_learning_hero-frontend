@@ -15,7 +15,7 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_server}/course/all`
+          `${import.meta.env.VITE_server}/api/course/all`
         );
 
         setCourses(response?.data?.data);

@@ -17,7 +17,7 @@ const UpdateCourse = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_server}/course/one?courseId=${id}`
+          `${import.meta.env.VITE_server}/api/course/one?courseId=${id}`
         );
 
         setCourse(response?.data?.data);
@@ -35,7 +35,7 @@ const UpdateCourse = () => {
     return <LoadingPage />;
   }
 
-  if (customError && course.length > 0) {
+  if (customError && Object.keys(course).length < 0) {
     toast.error(customError);
   }
 
@@ -83,7 +83,7 @@ const UpdateCourse = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.patch(
-        `${import.meta.env.VITE_server}/course/update?courseId=${id}`,
+        `${import.meta.env.VITE_server}/api/course/update?courseId=${id}`,
         data,
         {
           headers: {

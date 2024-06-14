@@ -1,8 +1,8 @@
 import { useSignInWithGoogle, useSignOut } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/firebase.config";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { RiGoogleFill } from "react-icons/ri";
+import { auth } from "../firebase/firebase.config";
 
 const GoogleLogin = () => {
   const [signInWithGoogle] = useSignInWithGoogle(auth);

@@ -17,7 +17,7 @@ const MyCourses = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_server}/course/my-courses`,
+          `${import.meta.env.VITE_server}/api/course/my-courses`,
           {
             headers: {
               "Content-Type": "application/json",

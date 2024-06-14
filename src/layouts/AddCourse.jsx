@@ -25,6 +25,7 @@ const AddCourse = () => {
       instructor,
       fee,
       bannerURL,
+      videoURL: "/video.mp4",
     };
 
     try {
@@ -32,7 +33,7 @@ const AddCourse = () => {
       setCustomError("");
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `${import.meta.env.VITE_server}/course/add`,
+        `${import.meta.env.VITE_server}/api/course/add`,
         data,
         {
           headers: {
